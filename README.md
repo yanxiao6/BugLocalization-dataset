@@ -4,3 +4,4 @@ This code is used to collect data from github based on the mappings between bug 
 
 Requirements: Java with the packages
 
+BugReportAstMain.java is the main function
