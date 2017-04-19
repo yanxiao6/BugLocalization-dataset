@@ -19,7 +19,7 @@ public class BugItem {
 
 	public String bugFileLable;
 
-	private final int ITEM_SIZE = 10; // 对应所属item包含的内容的数目， eg：ID，bugId。。。
+	private final int ITEM_SIZE = 10; // the number of contents that BugItem contains, e.g., ID，bugId
 
 	public BugItem(String itemStr) {
 		if (itemStr == null || itemStr.length() <= 0) {
@@ -28,7 +28,7 @@ public class BugItem {
 
 		String[] contents = itemStr.split("\t");
 		if (contents.length < ITEM_SIZE) {
-			// 当出入的参数长度不服，则停止运行，便于校验错误数据。
+			// when the number of contents that BugItem contains isn't correct, stop running. This is used to check errors.
 			throw new IllegalArgumentException();
 		}
 

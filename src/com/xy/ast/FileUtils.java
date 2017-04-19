@@ -35,8 +35,8 @@ public class FileUtils {
 			}
 		}
 		
-		 // 复制文件  
-        int byteread = 0; // 读取的字节数  
+		 // copy files
+        int byteread = 0; // number of  read bytes
         InputStream in = null;  
         OutputStream out = null;  
   

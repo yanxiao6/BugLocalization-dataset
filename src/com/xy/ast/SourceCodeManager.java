@@ -72,7 +72,7 @@ public class SourceCodeManager {
 	private SourceCodeManager() {
 	};
 
-	// µ¥ÀıÄ£Ê½
+	// singleton
 	public static SourceCodeManager getInstance() {
 		if (mInstance == null) {
 			synchronized (SourceCodeManager.class) {
@@ -108,7 +108,7 @@ public class SourceCodeManager {
 	}
 
 	/**
-	 * Éú³ÉÔ´´úÂë¶ÔÓ¦µÄAST map¡£
+	 * generate corresponding AST map from source code
 	 * 
 	 * @return
 	 */
@@ -146,9 +146,9 @@ public class SourceCodeManager {
 			astKeyWord += "$%$" + sb.toString();
 			sourceCodeAstMap.put(fileName, astKeyWord);
 
-			// ´òÓ¡½ø¶ÈÈÕÖ¾
+			// print progress
 			if (index % 100 == 0) {
-				LogUtils.log(TAG, String.format("½ø¶È£º%.2f", (((float) index) / mSourceFileList.size()) * 100));
+				LogUtils.log(TAG, String.format("progressï¼š%.2f", (((float) index) / mSourceFileList.size()) * 100));
 			}
 		}
 
@@ -160,7 +160,7 @@ public class SourceCodeManager {
 		StringBuffer buffer = new StringBuffer();
 		try {
 			TypeDeclaration type = (TypeDeclaration) ((CompilationUnit) astNode).types().get(0);
-			// µ±Ç°ÀàÃû
+			// class name
 			buffer.append(type.getName());
 			buffer.append(' ');
 
@@ -201,7 +201,7 @@ public class SourceCodeManager {
 					continue;
 				}
 
-				// ´ÓgitÖĞÀ­È¡¶ÔÓ¦µÄ°æ±¾ÎÄ¼ş
+				// pull files corresponding to current version from git
 				try {
 					CheckoutCommand checkoutCommand = git.checkout();
 					checkoutCommand.addPath(fileName);
@@ -216,7 +216,7 @@ public class SourceCodeManager {
 
 				File file = new File(SourceCodeManager.SOURCE_CODE_DIR, fileName);
 				if (!file.exists()) {
-					// ÓĞ¿ÉÄÜÊÇĞÂÔöµÄÎÄ¼ş£¬ĞèÒª½«ĞÂÔöµÄÎÄ¼ş¼ÓÈë½øÀ´
+					// add the newly added files if this files are newly added
 					try {
 						CheckoutCommand checkoutCommand = git.checkout();
 						checkoutCommand.addPath(fileName);
@@ -235,7 +235,7 @@ public class SourceCodeManager {
 					}
 				}
 
-				// ¿½±´ÎÄ¼şµ½Ö¸¶¨µÄµØ·½
+				// copy files into specified path
 				if (file.exists()) {
 					String origineFileName = file.getName();
 					String origineAbsoluteName = file.getAbsolutePath();
@@ -271,7 +271,7 @@ public class SourceCodeManager {
 	}
 
 	/**
-	 * »ñÈ¡ ¶ÔÓ¦BugReportµÄlabel
+	 * generate labels corresponding to BugReport
 	 * 
 	 * @param files
 	 * @return
@@ -305,7 +305,7 @@ public class SourceCodeManager {
 	}
 
 	/**
-	 * ±£´æÔ´´ú´aÎÄ¼şµ½±¾µØ¡£
+	 * save source code to local path
 	 */
 	public void saveSourceFileList() {
 		FileWriter fw = null;

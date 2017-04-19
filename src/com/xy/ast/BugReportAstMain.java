@@ -25,12 +25,12 @@ public class BugReportAstMain {
 		List<BugItem> items = generator.generateBugItemsFromFile(generator.BUG_REPORT_FILE);
 
 		// initialize SourceManager by BugItemList
-		LogUtils.log(TAG, "generate all buggy files 正在生成所有的bug文件...");
+		LogUtils.log(TAG, "generate all buggy files ...");
 
 		SourceCodeManager sourceCodeManager = SourceCodeManager.getInstance();
 		sourceCodeManager.initSourFileContext(items);
 
-		// 如果需要从github上拉取各个版本的源代码，则打开开关 if the source code of different versions need to be pulled from github, open this switch
+		// open this switch if the source code of different versions need to be pulled from github
 		 if (SourceCodeManager.GIT_CHECKOUT) {
 			 sourceCodeManager.gitAllSourceCodeFile(items);
 			 return;
@@ -59,14 +59,14 @@ public class BugReportAstMain {
 		sourceCodeManager.setSourceFiles(bugFiles);
 		// sourceCodeManager.initAllSourceFile();
 
-		// 根据sourceManager生成对应的bugLabel bugLabel is generated according to sourceManager
+		// bugLabel is generated according to sourceManager
 		generator.generateFileLabel(items);
 
-		// 将bugItem写入到文本中。 bugItem is written into txt files
+		// bugItem is written into txt files
 		try {
 			bw = new BufferedWriter(new FileWriter(new File(SourceCodeManager.LOCAL_FILE_PREFIX + "bugItem.txt")));
 
-			LogUtils.log(TAG, "将 BugItem写入到文件 write bugItem into txt files");
+			LogUtils.log(TAG, "write bugItem into txt files");
 			for (BugItem item : items) {
 				if (item != null && item.bugFileLable != null && item.bugFileLable.length() > 0) {
 					if (item.description != null && item.description.length() > 0) {
@@ -83,7 +83,7 @@ public class BugReportAstMain {
 					LogUtils.log("BugReportAstMain", item.commit + ", " + item.id);
 				}
 			}
-			LogUtils.log(TAG, "BugItem写入文件成功 bugItem written successifully");
+			LogUtils.log(TAG, "bugItem written successifully");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -96,13 +96,13 @@ public class BugReportAstMain {
 			}
 		}
 
-		// 获取源代码AST Map 
+		// generate AST Map of source code
 		sourceCodeManager.saveSourceFileList();
 		Map<String, String> sourceCodeAstMap = sourceCodeManager.generateSourceCodeAstMap();
 		try {
 			bw = new BufferedWriter(new FileWriter(new File(SourceCodeManager.LOCAL_FILE_PREFIX + "sourceCodeAst.txt")));
 
-			LogUtils.log(TAG, "将SouceCode AST树写入到文件");
+			LogUtils.log(TAG, "write SouceCode AST into files");
 			Set<Map.Entry<String, String>> entrySet = sourceCodeAstMap.entrySet();
 			for (Iterator<Entry<String, String>> iterator = entrySet.iterator(); iterator.hasNext();) {
 				Map.Entry<String, String> entry = iterator.next();
@@ -111,7 +111,7 @@ public class BugReportAstMain {
 				bw.write(entry.getValue());
 				bw.write("\r\n");
 			}
-			LogUtils.log(TAG, "将SouceCode AST树写入文件成功");
+			LogUtils.log(TAG, "SouceCode AST written successifully!");
 
 			bw.flush();
 
@@ -119,6 +119,6 @@ public class BugReportAstMain {
 			e.printStackTrace();
 		}
 
-		LogUtils.log(TAG, "任务成功完成 !!! enjoy^.^");
+		LogUtils.log(TAG, "finished !!! enjoy^.^");
 	}
 }

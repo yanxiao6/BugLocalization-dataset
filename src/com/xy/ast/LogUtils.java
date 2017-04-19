@@ -16,11 +16,11 @@ public class LogUtils {
 
 	public static void setOpen(boolean open) {
 		mOpen = open;
-		System.out.println("日志打印已" + (open?"打开":"关闭"));
+		System.out.println("log print is" + (open?"open":"close"));
 	}
 	
 	/**
-	 * 打印日志
+	 * print logs
 	 * @param content
 	 */
 	public static void log(String TAG, String content){
@@ -30,7 +30,7 @@ public class LogUtils {
 	}
 	
 	/**
-	 * 打印log到文本
+	 * write logs into files
 	 * @param content
 	 */
 	public static void logFile(String TAG, String content){

@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 根据BugReport生成AST树，并输出结果到文本。
+ * generate AST based on bug reports and then output into files
  * 
- * @author hz
+ * @author xy
  *
  */
 public class BR_BugItemGenerator {
@@ -31,9 +31,9 @@ public class BR_BugItemGenerator {
 
 	/**
 	 * 
-	 * @param file
-	 *            需要解析的bug report
-	 * @return 解析后的bugItem 列表
+	 * @param file 
+	 *            bug report that needs parsing
+	 * @return    bugItem list after parsing
 	 */
 	public List<BugItem> generateBugItemsFromFile(String file) {
 		if (file == null || file.length() < 0) {
@@ -44,14 +44,14 @@ public class BR_BugItemGenerator {
 
 		BufferedReader br = null;
 		try {
-			LogUtils.log(TAG, "尝试打开BugReport文件：" + file);
+			LogUtils.log(TAG, "open bug report files：" + file);
 			br = new BufferedReader(new FileReader(new File(file)));
-			LogUtils.log(TAG, "打开BugReport文件成功!");
+			LogUtils.log(TAG, "open BugReport files successifully!");
 
-			LogUtils.log(TAG, "开始解析BugReport文件...");
+			LogUtils.log(TAG, "parse BugReport files...");
 			String line = null;
 			while ((line = br.readLine()) != null) {
-				// 跳过表头（标题栏）
+				// skip the first line of tables (title bar)
 				char firstChar = line.charAt(0);
 				if (firstChar > '9' || firstChar < '0') {
 					LogUtils.log(TAG, "Skip line：" + line);
@@ -60,7 +60,7 @@ public class BR_BugItemGenerator {
 
 				items.add(new BugItem(line));
 			}
-			LogUtils.log(TAG, "解析BugReport文件完毕!");
+			LogUtils.log(TAG, "parsing BugReport files finished!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -78,15 +78,16 @@ public class BR_BugItemGenerator {
 		return items;
 	}
 
-	// 匹配对应文件映射表。注意调用该方法之前，SouceManager需要先初始化列表
+	// generate mapping labels between bug reports and source files
+	// Note: SouceManager needs to be initialized before calling this function
 	public void generateFileLabel(List<BugItem> items) {
-		LogUtils.log(TAG, "开始生成BugReport标签");
+		LogUtils.log(TAG, "begin generating BugReport labels");
 		for (BugItem bugItem : items) {
 			List<String> files = bugItem.files;
 			if (files != null && files.size() > 0) {
 				bugItem.bugFileLable = sourceCodeManager.getBugReportLabel(files);
 			}
 		}
-		LogUtils.log(TAG, "生成标签完成");
+		LogUtils.log(TAG, "generating labels finished!");
 	}
 }
