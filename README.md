@@ -13,3 +13,5 @@ Requirements: Java with the packages:
        org.eclipse.osgi.jar
 
 BugReportAstMain.java is the main function
+
+The source code with different versions of five projects used in our paper can be found here: https://www.dropbox.com/sh/143peoq6277hz2u/AAA4ocW_AC7fKF04KB6Hxe94a?dl=0
