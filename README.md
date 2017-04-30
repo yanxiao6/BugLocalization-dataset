@@ -2,7 +2,7 @@ This code belongs to Deep Learning based Bug Localization against Lexical Mismat
 
 This code is used to collect data from github based on the mappings between bug reports and corresponding buggy files provided in Learning to Rank Relevant Files for Bug Reports using Domain Knowledge. Thanks to the authors. 
 
-Requirements: Java with the packages:  
+Requirements: Java with the packages in the libs of src and the following packages are used to extract ast:  
        org.eclipse.core.contenttype.jar
        org.eclipse.core.jobs.jar
        org.eclipse.core.resources.jar
