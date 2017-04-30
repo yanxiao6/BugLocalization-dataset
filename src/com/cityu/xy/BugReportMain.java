@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BugReportAstMain {
+public class BugReportMain {
 	private final static String TAG = BugReportAstMain.class.getSimpleName();
 
 	public static void main(String[] args) throws Exception {
