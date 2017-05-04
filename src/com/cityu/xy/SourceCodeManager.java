@@ -110,7 +110,7 @@ public class SourceCodeManager {
 					continue;
 				}
 
-				// git version file
+				// pull files corresponding to current version from git
 				try {
 					CheckoutCommand checkoutCommand = git.checkout();
 					checkoutCommand.addPath(fileName);
@@ -125,7 +125,7 @@ public class SourceCodeManager {
 
 				File file = new File(SourceCodeManager.SOURCE_CODE_DIR, fileName);
 				if (!file.exists()) {
-					// some file maybe added, so git it
+					// add the newly added files if this files are newly added
 					try {
 						CheckoutCommand checkoutCommand = git.checkout();
 						checkoutCommand.addPath(fileName);

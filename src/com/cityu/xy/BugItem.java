@@ -19,7 +19,7 @@ public class BugItem {
 
 	public String bugFileLable;
 
-	private final int ITEM_SIZE = 10; // content count£¬ eg£ºID£¬bugId¡£¡£¡£
+	private final int ITEM_SIZE = 10; // the number of contents that BugItem contains, e.g., ID,bugId
 
 	public BugItem(String itemStr) {
 		if (itemStr == null || itemStr.length() <= 0) {
@@ -28,7 +28,7 @@ public class BugItem {
 
 		String[] contents = itemStr.split("\t");
 		if (contents.length < ITEM_SIZE) {
-			// when count is not meet, throw exception
+			// when the number of contents that BugItem contains isn't correct, stop running. This is used to check errors.
 			throw new IllegalArgumentException();
 		}
 

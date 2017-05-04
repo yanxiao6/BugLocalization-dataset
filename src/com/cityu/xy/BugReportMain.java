@@ -56,7 +56,7 @@ public class BugReportMain {
 		// according sourceManager to generate bugLabel
 		generator.generateFileLabel(items);
 
-		// write bugItem to text files
+		// write bugItem into text files
 		try {
 			bw = new BufferedWriter(new FileWriter(new File(SourceCodeManager.LOCAL_FILE_PREFIX + "bugItem.txt")));
 
@@ -77,7 +77,7 @@ public class BugReportMain {
 					bw.write(item.reportTimes);
 					bw.write("\r\n");
 				}else{
-					LogUtils.log("BugReportAstMain", item.commit + ", " + item.id);
+					LogUtils.log("BugReportMain", item.commit + ", " + item.id);
 				}
 			}
 			LogUtils.log(TAG, "bugItem written successifully");

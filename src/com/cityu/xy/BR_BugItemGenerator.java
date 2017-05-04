@@ -42,7 +42,7 @@ public class BR_BugItemGenerator {
 
 		BufferedReader br = null;
 		try {
-			LogUtils.log(TAG, "try to open bugReport file£º" + file);
+			LogUtils.log(TAG, "try to open bugReport file: " + file);
 			br = new BufferedReader(new FileReader(new File(file)));
 			LogUtils.log(TAG, "open bugReport file success!");
 
@@ -52,13 +52,13 @@ public class BR_BugItemGenerator {
 				// skip headline
 				char firstChar = line.charAt(0);
 				if (firstChar > '9' || firstChar < '0') {
-					LogUtils.log(TAG, "Skip line£º" + line);
+					LogUtils.log(TAG, "Skip line: " + line);
 					continue;
 				}
 
 				items.add(new BugItem(line));
 			}
-			LogUtils.log(TAG, "finish parse bugReport file!");
+			LogUtils.log(TAG, "parsing bugReport file finished!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -88,6 +88,6 @@ public class BR_BugItemGenerator {
 				bugItem.bugFileLable = sourceCodeManager.getBugReportLabel(files);
 			}
 		}
-		LogUtils.log(TAG, "finish generate label!");
+		LogUtils.log(TAG, "generating label finished!");
 	}
 }
