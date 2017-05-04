@@ -44,7 +44,7 @@ public class BR_BugItemGenerator {
 		try {
 			LogUtils.log(TAG, "try to open bugReport file: " + file);
 			br = new BufferedReader(new FileReader(new File(file)));
-			LogUtils.log(TAG, "open bugReport file success!");
+			LogUtils.log(TAG, "open bugReport file successfully!");
 
 			LogUtils.log(TAG, "Parsing bugReport file...");
 			String line = null;
