@@ -1,4 +1,4 @@
-This code belongs to Deep Learning based Bug Localization against Lexical Mismatch.
+This code belongs to Improving Bug Localization with an Enhanced Convolutional Neural Network (APSEC 2017) and Improving Bug Localization with Word Embedding and Enhanced Convolutional Neural Networks (IST).
 
 This code is used to collect data from github based on the mappings between bug reports and corresponding buggy files provided in Learning to Rank Relevant Files for Bug Reports using Domain Knowledge. Thanks to the authors. 
 
